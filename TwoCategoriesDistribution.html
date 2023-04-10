@@ -1,0 +1,161 @@
+<!DOCTYPE html> 
+
+<html> 
+
+<head> 
+
+<title>Random Task Assignment</title> 
+
+</head> 
+
+<body> 
+
+<h1>Random Task Assignment</h1> 
+
+ 
+
+<form> 
+
+<label for="team1">Team 1:</label> 
+
+<input type="text" id="team1" name="team1"><br> 
+
+ 
+
+<label for="team2">Team 2:</label> 
+
+<input type="text" id="team2" name="team2"><br> 
+
+ 
+
+<label for="team3">Team 3:</label> 
+
+<input type="text" id="team3" name="team3"><br> 
+
+ 
+
+<label for="team4">Team 4:</label> 
+
+<input type="text" id="team4" name="team4"><br> 
+
+ 
+
+<label for="team5">Team 5:</label> 
+
+<input type="text" id="team5" name="team5"><br><br> 
+
+ 
+
+<label for="majorTasks">Major Tasks:</label> 
+
+<textarea id="majorTasks" name="majorTasks"></textarea><br> 
+
+ 
+
+<label for="minorTasks">Minor Tasks:</label> 
+
+<textarea id="minorTasks" name="minorTasks"></textarea><br><br> 
+
+ 
+
+<button type="button" onclick="assignTasks()">Randomize Tasks</button> 
+
+</form> 
+
+ 
+
+<div id="output"></div> 
+
+ 
+
+<script> 
+
+function assignTasks() { 
+
+// Get team names and major/minor tasks 
+
+var team1 = document.getElementById("team1").value; 
+
+var team2 = document.getElementById("team2").value; 
+
+var team3 = document.getElementById("team3").value; 
+
+var team4 = document.getElementById("team4").value; 
+
+var team5 = document.getElementById("team5").value; 
+
+ 
+
+var majorTasks = document.getElementById("majorTasks").value.split('\n'); 
+
+var minorTasks = document.getElementById("minorTasks").value.split('\n'); 
+
+ 
+
+// Shuffle major/minor tasks arrays 
+
+shuffle(majorTasks); 
+
+shuffle(minorTasks); 
+
+ 
+
+// Assign tasks to each team 
+
+var tasks = []; 
+
+tasks.push([team1, majorTasks.pop(), minorTasks.pop()]); 
+
+tasks.push([team2, majorTasks.pop(), minorTasks.pop()]); 
+
+tasks.push([team3, majorTasks.pop(), minorTasks.pop()]); 
+
+tasks.push([team4, majorTasks.pop(), minorTasks.pop()]); 
+
+tasks.push([team5, majorTasks.pop(), minorTasks.pop()]); 
+
+ 
+
+// Display assigned tasks 
+
+var output = document.getElementById("output"); 
+
+output.innerHTML = ""; 
+
+ 
+
+for (var i = 0; i < tasks.length; i++) { 
+
+output.innerHTML += "<p>" + tasks[i][0] + ": " + tasks[i][1] + ", " + tasks[i][2] + "</p>"; 
+
+} 
+
+} 
+
+ 
+
+function shuffle(array) { 
+
+// Fisher-Yates shuffle algorithm 
+
+for (var i = array.length - 1; i > 0; i--) { 
+
+var j = Math.floor(Math.random() * (i + 1)); 
+
+var temp = array[i]; 
+
+array[i] = array[j]; 
+
+array[j] = temp; 
+
+} 
+
+} 
+
+</script> 
+
+</body> 
+
+</html> 
+
+ 
